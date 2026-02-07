@@ -1,0 +1,208 @@
+1. HOW MANY UNIQUE PAGES DID YOU FIND?
+--------------------------------------------------------------------------------
+Answer: 7,211 unique pages
+
+2. WHAT IS THE LONGEST PAGE IN TERMS OF NUMBER OF WORDS?
+--------------------------------------------------------------------------------
+Answer: http://www.ics.uci.edu/~jutts/GAISE/GAISE.pps
+
+3. WHAT ARE THE 50 MOST COMMON WORDS?
+--------------------------------------------------------------------------------
+Answer: (Stop words excluded, ordered by frequency)
+
+   1. project                   8,704
+   2. ion                       7,664
+   3. uci                       7,379
+   4. thi                       7,068
+   5. data                      6,623
+   6. earch                     6,004
+   7. 2018                      5,518
+   8. 2021                      5,482
+   9. 2023                      5,299
+  10. 2017                      5,243
+  11. 2019                      5,224
+  12. will                      5,130
+  13. 2020                      5,087
+  14. tudent                    4,944
+  15. ing                       4,871
+  16. 2022                      4,779
+  17. 2016                      4,556
+  18. year                      4,462
+  19. may                       4,365
+  20. computer                  4,357
+  21. ics                       4,147
+  22. 2015                      4,130
+  23. information               4,060
+  24. can                       3,994
+  25. ity                       3,916
+  26. june                      3,814
+  27. univer                    3,722
+  28. september                 3,659
+  29. tem                       3,646
+  30. new                       3,571
+  31. july                      3,515
+  32. irvine                    3,448
+  33. science                   3,404
+  34. cour                      3,385
+  35. april                     3,309
+  36. profe                     3,301
+  37. work                      3,293
+  38. december                  3,236
+  39. march                     3,232
+  40. november                  3,196
+  41. january                   3,184
+  42. february                  3,169
+  43. augu                      3,125
+  44. con                       3,028
+  45. october                   2,972
+  46. tic                       2,963
+  47. edu                       2,866
+  48. ter                       2,793
+  49. time                      2,777
+  50. file                      2,748
+
+4. HOW MANY SUBDOMAINS IN UCI.EDU?
+--------------------------------------------------------------------------------
+Answer: 139 subdomains
+
+Subdomain list (alphabetically ordered):
+
+accessibility.ics.uci.edu, 2
+acoi.ics.uci.edu, 84
+aiclub.ics.uci.edu, 1
+archive-beta.ics.uci.edu, 4
+archive.ics.uci.edu, 31
+asterix.ics.uci.edu, 11
+asterixdb.ics.uci.edu, 1
+capstone.cs.uci.edu, 1
+cbcl.ics.uci.edu, 3
+cert.ics.uci.edu, 25
+cgvw.ics.uci.edu, 1
+checkin.ics.uci.edu, 2
+checkmate.ics.uci.edu, 1
+chenli.ics.uci.edu, 10
+cherry.ics.uci.edu, 1
+chime.ics.uci.edu, 1
+circinus-14.ics.uci.edu, 1
+cloudberry.ics.uci.edu, 26
+cml.ics.uci.edu, 13
+cocoa-krispies.ics.uci.edu, 1
+code.ics.uci.edu, 2
+computableplant.ics.uci.edu, 143
+containers.ics.uci.edu, 1
+coronavirustwittermap.ics.uci.edu, 1
+courselisting.ics.uci.edu, 2
+create.ics.uci.edu, 2
+cs.ics.uci.edu, 4
+cs.uci.edu, 1
+cwicsocal18.ics.uci.edu, 3
+cyberclub.ics.uci.edu, 2
+dblp.ics.uci.edu, 2
+dgillen.ics.uci.edu, 3
+ds4all.ics.uci.edu, 5
+duke.ics.uci.edu, 1
+duttgroup.ics.uci.edu, 50
+dynamo.ics.uci.edu, 38
+edgelab.ics.uci.edu, 3
+elms.ics.uci.edu, 1
+emj-pc.ics.uci.edu, 1
+emj.ics.uci.edu, 41
+evoke.ics.uci.edu, 3
+flamingo.ics.uci.edu, 52
+fr.ics.uci.edu, 13
+futurehealth.ics.uci.edu, 116
+gitlab.ics.uci.edu, 2
+gradinfo.ics.uci.edu, 1
+grafana-infra-blue.ics.uci.edu, 1
+grape.ics.uci.edu, 1444
+graphics.ics.uci.edu, 8
+graphmod.ics.uci.edu, 17
+hack.ics.uci.edu, 1
+hai.ics.uci.edu, 7
+hana.ics.uci.edu, 2
+helpdesk.ics.uci.edu, 4
+hobbes.ics.uci.edu, 10
+hombao.ics.uci.edu, 2
+honors.ics.uci.edu, 1
+hpi.ics.uci.edu, 2
+hub.ics.uci.edu, 2
+iasl.ics.uci.edu, 2
+icde2023.ics.uci.edu, 47
+ics.uci.edu, 1036
+informatics.ics.uci.edu, 1
+informatics.mt-live.ics.uci.edu, 1
+informatics.uci.edu, 1
+insite.ics.uci.edu, 10
+instdav.ics.uci.edu, 1
+intranet.ics.uci.edu, 1
+ipubmed.ics.uci.edu, 1
+isg.ics.uci.edu, 46
+jgarcia.ics.uci.edu, 1
+jujube.ics.uci.edu, 2
+julia-hub.ics.uci.edu, 1
+kpassword.ics.uci.edu, 1
+labbie.ics.uci.edu, 1
+luci.ics.uci.edu, 5
+mailman.ics.uci.edu, 12
+malek.ics.uci.edu, 1
+mcs.ics.uci.edu, 4
+mdogucu.ics.uci.edu, 2
+mds.ics.uci.edu, 6
+mhcid.ics.uci.edu, 6
+mondego.ics.uci.edu, 1
+mswe.ics.uci.edu, 5
+mt-live.ics.uci.edu, 1
+nalini.ics.uci.edu, 1
+netreg.ics.uci.edu, 1
+ngs.ics.uci.edu, 1
+oai.ics.uci.edu, 4
+observium.ics.uci.edu, 1
+password.ics.uci.edu, 1
+pastebin.ics.uci.edu, 1
+pgadmin.ics.uci.edu, 1
+phpmyadmin.ics.uci.edu, 1
+prometheus-infra-blue.ics.uci.edu, 1
+psearch.ics.uci.edu, 5
+radicle.ics.uci.edu, 6
+redmiles.ics.uci.edu, 1
+riscit.ics.uci.edu, 1
+rstudio-hub.ics.uci.edu, 1
+satware.ics.uci.edu, 1
+sdcl.ics.uci.edu, 1
+seal.ics.uci.edu, 52
+sherlock.ics.uci.edu, 8
+sli.ics.uci.edu, 7
+speedtest.ics.uci.edu, 1
+sprout.ics.uci.edu, 1
+staging-hub.ics.uci.edu, 1
+stairs.ics.uci.edu, 4
+stat.ics.uci.edu, 3
+stat.uci.edu, 2
+statconsulting.ics.uci.edu, 4
+student-council.ics.uci.edu, 5
+studentcouncil.ics.uci.edu, 1
+students.ics.uci.edu, 1
+summeracademy.ics.uci.edu, 4
+support.ics.uci.edu, 3
+svn.ics.uci.edu, 1
+swiki.ics.uci.edu, 377
+tad.ics.uci.edu, 1
+tastier.ics.uci.edu, 1
+tippersweb.ics.uci.edu, 1
+transformativeplay.ics.uci.edu, 9
+tutoring.ics.uci.edu, 4
+tutors.ics.uci.edu, 1
+ugradforms.ics.uci.edu, 1
+unite.ics.uci.edu, 1
+vision.ics.uci.edu, 216
+wics.ics.uci.edu, 76
+wiki.ics.uci.edu, 360
+www-db.ics.uci.edu, 1
+www.cs.uci.edu, 16
+www.graphics.ics.uci.edu, 1
+www.ics.uci.edu, 1622
+www.informatics.ics.uci.edu, 1
+www.informatics.uci.edu, 704
+www.isg.ics.uci.edu, 1
+www.stat.uci.edu, 274
+xtune.ics.uci.edu, 6
