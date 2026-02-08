@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 import re
 import os
 import json
@@ -9,10 +8,6 @@ from bs4 import BeautifulSoup
 from threading import Lock
 from collections import deque, defaultdict, Counter
 from datetime import datetime
-
-# ============================================================
-# CONFIGURATION
-# ============================================================
 
 VALID_DOMAINS = (
     "ics.uci.edu",
@@ -31,8 +26,8 @@ for directory in [DATA_DIR, LOG_DIR]:
 # Ultra-lenient limits
 MAX_CONTENT_SIZE = 5 * 1024 * 1024
 MIN_WORD_COUNT = 50
-MAX_PATH_DEPTH = 20  # Very high
-MAX_URL_LENGTH = 800  # Very high
+MAX_PATH_DEPTH = 20 
+MAX_URL_LENGTH = 800 
 
 SIMHASH_THRESHOLD = 10
 SIMHASH_WINDOW = 1000
@@ -51,10 +46,6 @@ INVALID_EXTENSIONS = {
 }
 
 ALLOWED_EXTENSIONS = {'html', 'htm', 'php', 'asp', 'aspx', 'jsp', 'shtml', 'xhtml'}
-
-# ============================================================
-# GLOBAL TRACKING
-# ============================================================
 
 pages_processed = 0
 pages_saved = 0
@@ -76,10 +67,6 @@ processing_lock = Lock()
 url_pattern_counter = defaultdict(int)
 domain_path_counter = defaultdict(lambda: defaultdict(int))
 trap_lock = Lock()
-
-# ============================================================
-# DUPLICATE DETECTION (unchanged)
-# ============================================================
 
 def compute_simhash(text, hash_bits=64):
     words = text.split()
@@ -139,10 +126,6 @@ def is_duplicate(text_content, url):
     
     return False, None
 
-# ============================================================
-# LOGGING (unchanged)
-# ============================================================
-
 def log_processing(url, status, reason="", links_found=0):
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     with processing_lock:
@@ -174,10 +157,6 @@ def log_rejection(reason, url, save_sample=True):
         if save_sample and len(rejection_samples[reason]) < 5:
             rejection_samples[reason].append(url)
 
-# ============================================================
-# PATTERNS - ULTRA LENIENT
-# ============================================================
-
 CALENDAR_PATTERNS = [
     r'/calendar', r'/events?/', r'/event-calendar', r'/ical',
     r'/\\.ics$', r'[?&]calendar', r'[?&]event',
@@ -205,7 +184,6 @@ def is_legitimate_pattern(url):
     return any(re.search(p, url.lower()) for p in LEGITIMATE_PATTERNS)
 
 def is_url_trap(url):
-    """ULTRA LENIENT trap detection - only catch real traps"""
     try:
         parsed = urlparse(url)
         path_parts = [p for p in parsed.path.split('/') if p]
@@ -215,14 +193,14 @@ def is_url_trap(url):
         if len(path_parts) > max_depth:
             return True
         
-        # 2. Repeating segments - ONLY if EXTREMELY excessive
+        # 2. Repeating segments 
         if not is_legitimate_pattern(url):
             segment_counts = Counter(path_parts)
             # Only block if segment repeats more than 5 times
             if any(count > 5 for count in segment_counts.values()):
                 return True
         
-        # 3. Pattern frequency - MUCH higher limits
+        # 3. Pattern frequency 
         pattern = get_url_pattern(url)
         with trap_lock:
             url_pattern_counter[pattern] += 1
@@ -231,32 +209,32 @@ def is_url_trap(url):
             if url_pattern_counter[pattern] > max_repeats:
                 return True
         
-        # 4. Pagination - very high
+        # 4. Pagination 
         if parsed.query:
             query_params = parse_qs(parsed.query)
             for param in ['page', 'p', 'offset', 'start']:
                 if param in query_params:
                     try:
-                        if int(query_params[param][0]) > 500:  # Very high
+                        if int(query_params[param][0]) > 500: 
                             return True
                     except (ValueError, IndexError):
                         pass
         
-        # 5. Query length - very high
-        if len(parsed.query) > 300:  # Very high
+        # 5. Query length 
+        if len(parsed.query) > 300:  
             return True
         
-        # 6. Filter combinations - very lenient
+        # 6. Filter combinations 
         if parsed.query:
             query_lower = parsed.query.lower()
             filter_params = ['sort', 'order', 'filter', 'view', 'display']
-            if sum(1 for p in filter_params if p in query_lower) >= 5:  # Very lenient
+            if sum(1 for p in filter_params if p in query_lower) >= 5:
                 return True
         
-        # 7. Same path repeats - much higher
+        # 7. Same path repeats 
         with trap_lock:
             domain_path_counter[parsed.netloc][parsed.path] += 1
-            max_same = 50 if is_legitimate_pattern(url) else 30  # Much higher
+            max_same = 50 if is_legitimate_pattern(url) else 30  
             if domain_path_counter[parsed.netloc][parsed.path] > max_same:
                 return True
         
@@ -280,12 +258,7 @@ def get_url_pattern(url):
     except Exception:
         return url
 
-# ============================================================
-# URL VALIDATION - MINIMAL
-# ============================================================
-
 def is_valid(url):
-    """MINIMAL validation - only block obvious bad URLs"""
     try:
         parsed = urlparse(url)
         
@@ -316,29 +289,29 @@ def is_valid(url):
             log_rejection("blocked_domain", url, False)
             return False
         
-        # 4. URL length - very high
+        # 4. URL length 
         if len(url) > MAX_URL_LENGTH:
             log_rejection("url_too_long", url, False)
             return False
         
-        # 5. Calendar/events (still block these)
+        # 5. Calendar/events 
         if is_calendar_or_event(url):
             log_rejection("calendar_event", url)
             return False
         
-        # 6. Known traps (minimal list)
+        # 6. Known traps 
         if is_known_trap(url):
             log_rejection("known_trap", url)
             return False
         
-        # 7. Dynamic traps (much more lenient)
+        # 7. Dynamic traps 
         if is_url_trap(url):
             log_rejection("url_trap", url, False)
             return False
         
         path_lower = parsed.path.lower()
         
-        # 8. File extensions - BALANCED
+        # 8. File extensions 
         if "." in path_lower:
             parts = path_lower.rsplit('.', 1)
             if len(parts) == 2:
@@ -350,7 +323,7 @@ def is_valid(url):
                     log_rejection(f"ext_{ext}", url, False)
                     return False
         
-        # 9. Format parameters (still block these)
+        # 9. Format parameters 
         if parsed.query:
             query_lower = parsed.query.lower()
             bad_formats = ['format=txt', 'format=pdf', 'format=csv',
@@ -359,7 +332,7 @@ def is_valid(url):
                 log_rejection("format_param", url, False)
                 return False
         
-        # 10. Action endpoints (removed most, keep only critical)
+        # 10. Action endpoints
         if any(x in url.lower() for x in ['/search?', '?search=']):
             log_rejection("action", url, False)
             return False
@@ -368,10 +341,6 @@ def is_valid(url):
     
     except Exception:
         return False
-
-# ============================================================
-# SCRAPER (unchanged)
-# ============================================================
 
 def scraper(url, resp):
     global pages_processed, pages_saved, links_discovered
@@ -473,10 +442,6 @@ def save_page_data(url, words, text_content):
     except Exception:
         pass
 
-# ============================================================
-# REPORTING
-# ============================================================
-
 def print_final_report():
     print("\\n" + "=" * 80)
     print("CRAWLER FINAL REPORT")
@@ -493,7 +458,7 @@ def print_final_report():
             print(f"\\n  Duplicate rate: {(duplicates_found / pages_processed) * 100:.1f}%")
             print(f"  Save rate:      {(pages_saved / pages_processed) * 100:.1f}%")
     
-    print(f"\\n❌ REJECTIONS:")
+    print(f"\\nREJECTIONS:")
     with rejection_lock:
         total = sum(rejection_stats.values())
         print(f"  Total:        {total:,}\\n")
@@ -518,4 +483,5 @@ def get_progress_stats():
             'saved': pages_saved,
             'duplicates': duplicates_found,
             'discovered': links_discovered
+
         }
